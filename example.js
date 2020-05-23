@@ -6,6 +6,10 @@ const TODOS_LS = "toDos";
 
 const toDos = [];
 
+function deleteToDo(event) {
+  console.log(event.target);
+}
+
 function saveToDos() {
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
@@ -13,6 +17,7 @@ function paintToDo(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
   delBtn.value = "X";
+  delBtn.addEventListener("click", deleteToDo);
   const span = document.createElement("span");
   const newId = toDos.length + 1;
   span.innerText = text;
@@ -38,7 +43,9 @@ function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
   if (loadedToDos !== null) {
     const parsedToDos = JSON.parse(loadedToDos);
-    console.log(parseToDos);
+    parsedToDos.forEach(function (toDo) {
+      paintToDo(toDo.text);
+    });
   }
 }
 
