@@ -11,9 +11,9 @@ function getWeather(lat, lon) {
     })
     .then(function (json) {
       const temperature = json.main.temp;
-
+      const today = json.weather[0].main;
       const place = json.name;
-      weather.innerText = `🎈${temperature}  🐈${place}`;
+      weather.innerText = `W/T: ✨${today}🎈${temperature}  Location: 🐈${place}`;
     });
 }
 
